@@ -2,8 +2,8 @@
 //  SceneDelegate.swift
 //  WaterApp
 //
-//  Created by Jacob Miller on 1/3/20.
-//  Copyright © 2020 Jacob Miller. All rights reserved.
+//  Created by Jacob Miller on 12/10/19.
+//  Copyright © 2019 Jacob Miller. All rights reserved.
 //
 
 import UIKit
@@ -58,7 +58,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
+    
+    
 
 }
 

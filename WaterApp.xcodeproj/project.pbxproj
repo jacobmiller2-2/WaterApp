@@ -13,6 +13,8 @@
 		9B31163F23BFAC6900CF75DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B31163E23BFAC6900CF75DB /* Assets.xcassets */; };
 		9B31164223BFAC6900CF75DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B31164123BFAC6900CF75DB /* Preview Assets.xcassets */; };
 		9B31164523BFAC6900CF75DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B31164323BFAC6900CF75DB /* LaunchScreen.storyboard */; };
+		9B31164D23BFAE1D00CF75DB /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B31164C23BFAE1D00CF75DB /* LocalNotificationManager.swift */; };
+		9B31164F23BFB19F00CF75DB /* water-drop-noti.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9B31164E23BFB19F00CF75DB /* water-drop-noti.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		9B31164123BFAC6900CF75DB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9B31164423BFAC6900CF75DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B31164623BFAC6900CF75DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B31164C23BFAE1D00CF75DB /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
+		9B31164E23BFB19F00CF75DB /* water-drop-noti.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "water-drop-noti.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +60,14 @@
 		9B31163723BFAC6800CF75DB /* WaterApp */ = {
 			isa = PBXGroup;
 			children = (
+				9B31165023BFB22100CF75DB /* Sounds */,
 				9B31163823BFAC6800CF75DB /* AppDelegate.swift */,
 				9B31163A23BFAC6800CF75DB /* SceneDelegate.swift */,
 				9B31163C23BFAC6800CF75DB /* ContentView.swift */,
 				9B31163E23BFAC6900CF75DB /* Assets.xcassets */,
 				9B31164323BFAC6900CF75DB /* LaunchScreen.storyboard */,
 				9B31164623BFAC6900CF75DB /* Info.plist */,
+				9B31164C23BFAE1D00CF75DB /* LocalNotificationManager.swift */,
 				9B31164023BFAC6900CF75DB /* Preview Content */,
 			);
 			path = WaterApp;
@@ -73,6 +79,14 @@
 				9B31164123BFAC6900CF75DB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9B31165023BFB22100CF75DB /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				9B31164E23BFB19F00CF75DB /* water-drop-noti.wav */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +150,7 @@
 				9B31164523BFAC6900CF75DB /* LaunchScreen.storyboard in Resources */,
 				9B31164223BFAC6900CF75DB /* Preview Assets.xcassets in Resources */,
 				9B31163F23BFAC6900CF75DB /* Assets.xcassets in Resources */,
+				9B31164F23BFB19F00CF75DB /* water-drop-noti.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +163,7 @@
 			files = (
 				9B31163923BFAC6800CF75DB /* AppDelegate.swift in Sources */,
 				9B31163B23BFAC6800CF75DB /* SceneDelegate.swift in Sources */,
+				9B31164D23BFAE1D00CF75DB /* LocalNotificationManager.swift in Sources */,
 				9B31163D23BFAC6800CF75DB /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
