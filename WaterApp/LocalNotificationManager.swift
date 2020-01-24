@@ -17,7 +17,20 @@ class LocalNotificationManager {
     
     var notifications = [Notification]()
     
-    static func requestAuth() -> Void {
+    static let shared = LocalNotificationManager()
+    
+    func setNotification(title: String,body:String) -> Void {
+       
+        
+        self.addNotification(title: title, body: body)
+        
+        self.scheduleNotifications()
+        
+        // setting:
+        // self.setNotification(title: "Drink", body: "You should drink water")
+    }
+    
+    func requestAuth() -> Void {
         UNUserNotificationCenter
         .current()
             .requestAuthorization(options: [.alert, .badge, .sound]){
@@ -43,16 +56,27 @@ class LocalNotificationManager {
             
             let customSound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "water-drop-noti.wav"))
             content.sound = customSound
+
             
-            let timeUntilDelivery = 5.0 // In seconds. Double
-            let repeats = false;
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeUntilDelivery, repeats: repeats)
+            
+            var timeUntilDelivery: Double? = nil // In seconds. Double
+            
+            // Schedules delivery depending on athletic ability
+            if  UserDefaults.standard.bool(forKey: "Athletic"){
+                timeUntilDelivery = 2000
+            } else {
+                timeUntilDelivery = 3600
+            }
+            
+            let repeats = true;
+
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeUntilDelivery!, repeats: repeats)
             let request = UNNotificationRequest(identifier: notification.id, content: content, trigger: trigger)
             
             UNUserNotificationCenter.current().add(request) { error in
                 guard error == nil else { return }
-                print("Scheduling notification with id: \(notification.id).\nArriving in: \(timeUntilDelivery) seconds.\nRepeats: \(repeats).")
+                print("Scheduling notification with id: \(notification.id).\nArriving in: \(timeUntilDelivery!) seconds.\nRepeats: \(repeats).")
             }
         }
     }
