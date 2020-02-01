@@ -17,14 +17,16 @@ class LocalNotificationManager {
     
     var notifications = [Notification]()
     
+    
+    
     static let shared = LocalNotificationManager()
     
-    func setNotification(title: String,body:String) -> Void {
+    func setNotification(title: String,body:String, interval: Double) -> Void {
        
         
         self.addNotification(title: title, body: body)
-        
-        self.scheduleNotifications()
+        //UserStatsManager.shared.setNotificationInterval(interval: interval)
+        self.scheduleNotifications(interval: interval)
         
         // setting:
         // self.setNotification(title: "Drink", body: "You should drink water")
@@ -41,10 +43,16 @@ class LocalNotificationManager {
         }
     }
     
-    func addNotification(title: String, body: String) -> Void {
+    func removeNotifications() -> Void{
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    }
+    
+    
+    
+    private func addNotification(title: String, body: String) -> Void {
         notifications.append(Notification(id: UUID().uuidString, title: title, body: body))
     }
-    func scheduleNotifications() -> Void {
+    private func scheduleNotifications(interval: Double) -> Void {
         // Consider creating two parameters similar to UNTimeIntervalNotifcation Trigger
         
         for notification in notifications {
@@ -59,7 +67,7 @@ class LocalNotificationManager {
 
             
             
-            
+            /*
             var timeUntilDelivery: Double? = nil // In seconds. Double
             
             // Schedules delivery depending on athletic ability
@@ -68,15 +76,16 @@ class LocalNotificationManager {
             } else {
                 timeUntilDelivery = 3600
             }
+ */
             
             let repeats = true;
 
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeUntilDelivery!, repeats: repeats)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: repeats)
             let request = UNNotificationRequest(identifier: notification.id, content: content, trigger: trigger)
             
             UNUserNotificationCenter.current().add(request) { error in
                 guard error == nil else { return }
-                print("Scheduling notification with id: \(notification.id).\nArriving in: \(timeUntilDelivery!) seconds.\nRepeats: \(repeats).")
+                print("Scheduling notification with id: \(notification.id).\nArriving in: \(interval) seconds.\nRepeats: \(repeats).")
             }
         }
     }

@@ -10,30 +10,46 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @Binding var isAthletic: Bool
-    
-    
-    
+    @EnvironmentObject var userStats : UserStats
     
     var body: some View {
-            List {
-                HStack {
-                    
-                    Toggle(isOn: $isAthletic) {
-                        Text("Athletic")
-                    }
-                }
+        NavigationView {
+             VStack {
                 
-            }.navigationBarTitle(Text("Title"))
+                Text("Settings").font(.largeTitle).fontWeight(.bold).padding()
+                Form {
+                    Section{
+                        NavigationLink(destination: NotificationSettingsView()) {
+                        Text("Notifications")
+                        }
+                        
+                        
+                        Toggle(isOn: $userStats.isAthletic) {
+                        Text("Athletic")
+                        }
+                    } // End Section 1
+                    Section {
+                        
+                        Picker(selection: $userStats.isAthletic, label: Text("Theme")) {
+                            Text("Yet to be implemented")
+                            Text("Dark Theme").tag(1)
+                            Text("Light Theme").tag(2)
+                            Text("System Default").tag(3)
+                        }
+                    } // End Section 2
+                } // Close Form
+            } // Close VStack
+            Spacer()
+        }// Close NavigationView
     }
-    
 }
 
 struct SettingsView_Previews: PreviewProvider {
     
-    @State static var isAthletic = UserStatsManager.shared.getAthleticism()
+    
+    
     static var previews: some View {
         
-        SettingsView(isAthletic: $isAthletic)
+        SettingsView()
     }
 }

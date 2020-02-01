@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9B27615D23BFCCA800122F49 /* SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B27615C23BFCCA800122F49 /* SurveyView.swift */; };
+		9B16865723E086E500CAD36C /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B16865623E086E500CAD36C /* NotificationSettingsView.swift */; };
+		9B16865923E11B4600CAD36C /* TimerButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B16865823E11B4600CAD36C /* TimerButtonComponent.swift */; };
+		9B16865B23E121DE00CAD36C /* ColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B16865A23E121DE00CAD36C /* ColorExt.swift */; };
 		9B27616023BFD58200122F49 /* ButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B27615F23BFD58200122F49 /* ButtonComponent.swift */; };
 		9B31163923BFAC6800CF75DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B31163823BFAC6800CF75DB /* AppDelegate.swift */; };
 		9B31163B23BFAC6800CF75DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B31163A23BFAC6800CF75DB /* SceneDelegate.swift */; };
@@ -17,16 +19,18 @@
 		9B31164523BFAC6900CF75DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B31164323BFAC6900CF75DB /* LaunchScreen.storyboard */; };
 		9B31164D23BFAE1D00CF75DB /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B31164C23BFAE1D00CF75DB /* LocalNotificationManager.swift */; };
 		9B31164F23BFB19F00CF75DB /* water-drop-noti.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9B31164E23BFB19F00CF75DB /* water-drop-noti.wav */; };
-		9B32ED6023D8E82F00C7135E /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32ED5F23D8E82F00C7135E /* MenuView.swift */; };
 		9BC897C523DB5DF80037D548 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC897C423DB5DF80037D548 /* AppView.swift */; };
-		9BF2BC1323C8FBE600D7572A /* UserStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2BC1223C8FBE600D7572A /* UserStatsManager.swift */; };
+		9BD4468A23E4972600A60B69 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD4468923E4972600A60B69 /* UserPreferences.swift */; };
+		9BF2BC1323C8FBE600D7572A /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2BC1223C8FBE600D7572A /* UserStats.swift */; };
 		9BF2BC1623CAD03E00D7572A /* Rounding+Conversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2BC1523CAD03E00D7572A /* Rounding+Conversions.swift */; };
 		9BF2BC1B23CC101000D7572A /* UserProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2BC1A23CC101000D7572A /* UserProgressView.swift */; };
 		9BF2BC1F23CD165200D7572A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2BC1E23CD165200D7572A /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9B27615C23BFCCA800122F49 /* SurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyView.swift; sourceTree = "<group>"; };
+		9B16865623E086E500CAD36C /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
+		9B16865823E11B4600CAD36C /* TimerButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButtonComponent.swift; sourceTree = "<group>"; };
+		9B16865A23E121DE00CAD36C /* ColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExt.swift; sourceTree = "<group>"; };
 		9B27615F23BFD58200122F49 /* ButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonComponent.swift; sourceTree = "<group>"; };
 		9B31163523BFAC6800CF75DB /* WaterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B31163823BFAC6800CF75DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,9 +42,9 @@
 		9B31164623BFAC6900CF75DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B31164C23BFAE1D00CF75DB /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		9B31164E23BFB19F00CF75DB /* water-drop-noti.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "water-drop-noti.wav"; sourceTree = "<group>"; };
-		9B32ED5F23D8E82F00C7135E /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		9BC897C423DB5DF80037D548 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
-		9BF2BC1223C8FBE600D7572A /* UserStatsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatsManager.swift; sourceTree = "<group>"; };
+		9BD4468923E4972600A60B69 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		9BF2BC1223C8FBE600D7572A /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
 		9BF2BC1523CAD03E00D7572A /* Rounding+Conversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rounding+Conversions.swift"; sourceTree = "<group>"; };
 		9BF2BC1A23CC101000D7572A /* UserProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProgressView.swift; sourceTree = "<group>"; };
 		9BF2BC1E23CD165200D7572A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -62,10 +66,9 @@
 			children = (
 				9B31163C23BFAC6800CF75DB /* ContentView.swift */,
 				9BF2BC1A23CC101000D7572A /* UserProgressView.swift */,
-				9B27615C23BFCCA800122F49 /* SurveyView.swift */,
 				9BF2BC1E23CD165200D7572A /* SettingsView.swift */,
-				9B32ED5F23D8E82F00C7135E /* MenuView.swift */,
 				9BC897C423DB5DF80037D548 /* AppView.swift */,
+				9B16865623E086E500CAD36C /* NotificationSettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -74,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				9B27615F23BFD58200122F49 /* ButtonComponent.swift */,
+				9B16865823E11B4600CAD36C /* TimerButtonComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -97,13 +101,14 @@
 		9B31163723BFAC6800CF75DB /* WaterApp */ = {
 			isa = PBXGroup;
 			children = (
-				9BF2BC1223C8FBE600D7572A /* UserStatsManager.swift */,
+				9BD4468923E4972600A60B69 /* UserPreferences.swift */,
+				9BF2BC1223C8FBE600D7572A /* UserStats.swift */,
 				9B31164C23BFAE1D00CF75DB /* LocalNotificationManager.swift */,
 				9BF2BC1423CAD00400D7572A /* SwiftExtensions */,
-				9B27615E23BFD56300122F49 /* Components */,
 				9B31165023BFB22100CF75DB /* Sounds */,
 				9B31163823BFAC6800CF75DB /* AppDelegate.swift */,
 				9B31163A23BFAC6800CF75DB /* SceneDelegate.swift */,
+				9B27615E23BFD56300122F49 /* Components */,
 				9B27615B23BFCC7500122F49 /* Views */,
 				9B31163E23BFAC6900CF75DB /* Assets.xcassets */,
 				9B31164323BFAC6900CF75DB /* LaunchScreen.storyboard */,
@@ -133,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				9BF2BC1523CAD03E00D7572A /* Rounding+Conversions.swift */,
+				9B16865A23E121DE00CAD36C /* ColorExt.swift */,
 			);
 			path = SwiftExtensions;
 			sourceTree = "<group>";
@@ -209,14 +215,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B16865723E086E500CAD36C /* NotificationSettingsView.swift in Sources */,
 				9B31163923BFAC6800CF75DB /* AppDelegate.swift in Sources */,
-				9B32ED6023D8E82F00C7135E /* MenuView.swift in Sources */,
+				9B16865B23E121DE00CAD36C /* ColorExt.swift in Sources */,
 				9B27616023BFD58200122F49 /* ButtonComponent.swift in Sources */,
+				9BD4468A23E4972600A60B69 /* UserPreferences.swift in Sources */,
 				9B31163B23BFAC6800CF75DB /* SceneDelegate.swift in Sources */,
 				9B31164D23BFAE1D00CF75DB /* LocalNotificationManager.swift in Sources */,
-				9B27615D23BFCCA800122F49 /* SurveyView.swift in Sources */,
-				9BF2BC1323C8FBE600D7572A /* UserStatsManager.swift in Sources */,
+				9BF2BC1323C8FBE600D7572A /* UserStats.swift in Sources */,
 				9B31163D23BFAC6800CF75DB /* ContentView.swift in Sources */,
+				9B16865923E11B4600CAD36C /* TimerButtonComponent.swift in Sources */,
 				9BC897C523DB5DF80037D548 /* AppView.swift in Sources */,
 				9BF2BC1623CAD03E00D7572A /* Rounding+Conversions.swift in Sources */,
 				9BF2BC1B23CC101000D7572A /* UserProgressView.swift in Sources */,

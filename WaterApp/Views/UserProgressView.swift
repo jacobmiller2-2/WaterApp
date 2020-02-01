@@ -10,9 +10,9 @@ import SwiftUI
 
 struct UserProgressView: View {
     
-    
-    @Binding var isAthletic: Bool
-    
+    @EnvironmentObject var userStats: UserStats
+    var answer = true
+
     var body: some View {
         VStack{
             
@@ -20,14 +20,11 @@ struct UserProgressView: View {
                 Text("Jacob,").padding()
                 Spacer()
             }
-           // Text("\(leftToDrink.roundToString(places: 2)) Oz.").font(.largeTitle).fontWeight(.light)
+            Text("0.00 Oz.").font(.largeTitle).fontWeight(.light)
             Text("left to met your daily goal")
             
-            if (isAthletic){
-                Text("Athletic")
-            } else {
-                Text("Non-athletic")
-            }
+            Text("You are \(userStats.isAthletic ? "Athletic" : "Dumb")").padding()
+            
             
         }
         
@@ -36,9 +33,8 @@ struct UserProgressView: View {
 
 struct UserProgressView_Previews: PreviewProvider {
     
-    @State static var isAthletic = UserStatsManager.shared.getAthleticism()
-    
+ 
     static var previews: some View {
-        UserProgressView(isAthletic: $isAthletic)
+        UserProgressView()
     }
 }

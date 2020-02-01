@@ -12,24 +12,38 @@ import SwiftUI
 
 struct AppView: View {
     
-    @State var isAthletic = UserStatsManager.shared.getAthleticism()
-    
+    @EnvironmentObject var userStats : UserStats
     
        var body: some View {
             
-           NavigationView {
-            ContentView(isAthletic: $isAthletic)
+        TabView{
+            ContentView()
+                .tabItem {
+                    Image(systemName: "1.square.fill")
+                    Text("ContentView")
+                }
             
-           }
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "gear")
+                    .foregroundColor(.gray)
+                    .imageScale(.large)
+                    Text("Settings")
+                }
+
+        }
             .onAppear(){
-                UserStatsManager.shared.setAthleticism(isAthletic: self.isAthletic)
+            
             }
-        
+            .onDisappear(){
+                
+            }
     }
 }
 
 struct AppView_Previews: PreviewProvider {
     static var previews: some View {
         AppView()
+            
     }
 }
