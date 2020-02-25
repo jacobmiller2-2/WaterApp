@@ -17,21 +17,17 @@ class LocalNotificationManager {
     
     var notifications = [Notification]()
     
-    
-    
     static let shared = LocalNotificationManager()
     
     func setNotification(title: String,body:String, interval: Double) -> Void {
-       
-        
+       // TODO: Handle better
         self.addNotification(title: title, body: body)
-        //UserStatsManager.shared.setNotificationInterval(interval: interval)
         self.scheduleNotifications(interval: interval)
-        
-        // setting:
-        // self.setNotification(title: "Drink", body: "You should drink water")
     }
     
+    /**
+     Requests authorization from user to send notifications
+     */
     func requestAuth() -> Void {
         UNUserNotificationCenter
         .current()
@@ -43,10 +39,12 @@ class LocalNotificationManager {
         }
     }
     
+    /**
+        Removes all pending notifications
+     */
     func removeNotifications() -> Void{
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
-    
     
     
     private func addNotification(title: String, body: String) -> Void {
@@ -65,19 +63,6 @@ class LocalNotificationManager {
             let customSound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "water-drop-noti.wav"))
             content.sound = customSound
 
-            
-            
-            /*
-            var timeUntilDelivery: Double? = nil // In seconds. Double
-            
-            // Schedules delivery depending on athletic ability
-            if  UserDefaults.standard.bool(forKey: "Athletic"){
-                timeUntilDelivery = 2000
-            } else {
-                timeUntilDelivery = 3600
-            }
- */
-            
             let repeats = true;
 
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: repeats)

@@ -12,20 +12,22 @@ struct SettingsView: View {
     
     @EnvironmentObject var userStats : UserStats
     
+    
     var body: some View {
         NavigationView {
-             VStack {
-                
-                Text("Settings").font(.largeTitle).fontWeight(.bold).padding()
-                Form {
+            VStack(alignment: .leading) {
+                List{   
                     Section{
                         NavigationLink(destination: NotificationSettingsView()) {
                         Text("Notifications")
                         }
                         
+                        NavigationLink(destination: NameView()){
+                            Text("Personal Preferences")
+                        }
                         
-                        Toggle(isOn: $userStats.isAthletic) {
-                        Text("Athletic")
+                        NavigationLink(destination: StatSettingsView()){
+                            Text("Personal Stats")
                         }
                     } // End Section 1
                     Section {
@@ -37,7 +39,12 @@ struct SettingsView: View {
                             Text("System Default").tag(3)
                         }
                     } // End Section 2
-                } // Close Form
+                    
+                }
+                    .navigationBarTitle("Settings")// End List
+                .listStyle(GroupedListStyle())
+                .environment(\.horizontalSizeClass, .regular)
+                
             } // Close VStack
             Spacer()
         }// Close NavigationView

@@ -12,32 +12,34 @@ import SwiftUI
 
 struct AppView: View {
     
-    @EnvironmentObject var userStats : UserStats
+    @EnvironmentObject var uStats : UserStats
     
        var body: some View {
             
         TabView{
-            ContentView()
+            UserProgressView()
+                
                 .tabItem {
                     Image(systemName: "1.square.fill")
-                    Text("ContentView")
+                    Text("Progress")
                 }
+            UserStatsView()
+                
+                .tabItem{
+                    Image(systemName: "2.square.fill")
+                    Text("Stats")
+            }
             
             SettingsView()
+                
                 .tabItem {
                     Image(systemName: "gear")
                     .foregroundColor(.gray)
                     .imageScale(.large)
                     Text("Settings")
-                }
+            }
 
         }
-            .onAppear(){
-            
-            }
-            .onDisappear(){
-                
-            }
     }
 }
 
