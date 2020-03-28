@@ -12,48 +12,77 @@ struct ProgressRingView: View {
     
     @EnvironmentObject var uStats: UserStats
     
-    var colors: [Color] = [Color.darkBlue, Color.lightBlue]
+    var colors1: [Color] = [Color.darkBlue, Color.lightBlue]
+    var colors2: [Color] = [Color.lightBlue, Color.lightTeal]
     
     var body: some View {
         ZStack {
+            //Underline Circle
             Circle()
                 .stroke(Color.outlineBlue, lineWidth: 40)
             Circle()
                 .trim(from: 0, to: CGFloat(uStats.dailyProgress/Double(uStats.consumptionGoal)))
                 .stroke(
                     AngularGradient(
-                        gradient: Gradient(colors: colors),
+                        gradient: Gradient(colors: colors1),
                         center: .center,
                         startAngle: .degrees(0),
                         endAngle: .degrees(360)
                     ),
                     style: StrokeStyle(lineWidth: 40, lineCap: .round)
-            ).rotationEffect(.degrees(-90))
+                ).rotationEffect(.degrees(-90))
+            //Trailing Circle
             Circle()
                     .frame(width: 40, height: 40)
                     .foregroundColor(Color.darkBlue)
                     .offset(y: -150)
-            Circle()
+                .animation(.easeOut)
+                .disabled(uStats.dailyProgress/Double(uStats.consumptionGoal) >= 1)
+            if(uStats.dailyProgress/Double(uStats.consumptionGoal) >= 1) {
+                Circle()
+                    .trim(from: 0, to: CGFloat(uStats.dailyProgress/Double(uStats.consumptionGoal))-1)
+                    .stroke(
+                        AngularGradient(
+                            gradient: Gradient(colors: colors2),
+                            center: .center,
+                            startAngle: .degrees(0),
+                            endAngle: .degrees(360)
+                        ),
+                        style: StrokeStyle(lineWidth: 40, lineCap: .round)
+                    ).rotationEffect(.degrees(-90))
+                    .animation(.easeIn)
+                Circle()
                 .frame(width: 40, height: 40)
-                .foregroundColor(uStats.dailyProgress/Double(uStats.consumptionGoal) > 0.95 ? Color.lightBlue: Color.lightBlue.opacity(0))
+                .foregroundColor(Color.lightBlue)
                 .offset(y: -150)
-                .rotationEffect(Angle.degrees(360 * uStats.dailyProgress/Double(uStats.consumptionGoal)))
-                .shadow(color: uStats.dailyProgress/Double(uStats.consumptionGoal) > 0.96 ? Color.black.opacity(0.1): Color.clear, radius: 3, x: 4, y: 0)
+                
+            }
+            
+            // Leading Circle
+            if(uStats.dailyProgress/Double(uStats.consumptionGoal) >= 1){
+                Circle()
+                    .frame(width: 40, height: 40)
+                    .foregroundColor(uStats.dailyProgress/Double(uStats.consumptionGoal) > 1.95 ? Color.lightTeal: Color.lightTeal.opacity(0))
+                    .offset(y: -150)
+                    .rotationEffect(Angle.degrees(360 * uStats.dailyProgress/Double(uStats.consumptionGoal)))
+                    .shadow(color: uStats.dailyProgress/Double(uStats.consumptionGoal) > 0.95 ? Color.black.opacity(0.1): Color.clear, radius: 3, x: 4, y: 0)
+                
+            }else{
+                Circle()
+                    .frame(width: 40, height: 40)
+                    .foregroundColor(uStats.dailyProgress/Double(uStats.consumptionGoal) > 0.95 ? Color.lightBlue: Color.lightBlue.opacity(0))
+                    .offset(y: -150)
+                    .rotationEffect(Angle.degrees(360 * uStats.dailyProgress/Double(uStats.consumptionGoal)))
+                    .shadow(color: uStats.dailyProgress/Double(uStats.consumptionGoal) > 1.95 ? Color.black.opacity(0.1): Color.clear, radius: 3, x: 4, y: 0)
+                
+            }
+
             
         }
             .frame(idealWidth: 300, idealHeight: 300, alignment: .center)
             .animation(.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
     }
 }
-
-struct ProgressRingView_Previews: PreviewProvider {
-    @EnvironmentObject var uStats: UserStats
-    static var previews: some View {
-        ProgressRingView()
-    }
-}
-
-
 
 extension Color {
     public static var outlineRed: Color {
@@ -83,5 +112,9 @@ extension Color {
     
     public static var outlineBlue: Color {
         return Color(decimalRed: 3, green: 0, blue: 34)
+    }
+    
+    public static var lightTeal: Color {
+        return Color(decimalRed: 0, green: 255, blue: 200)
     }
 }

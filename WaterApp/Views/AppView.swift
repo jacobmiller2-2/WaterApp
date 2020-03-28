@@ -15,30 +15,27 @@ struct AppView: View {
     @EnvironmentObject var uStats : UserStats
     
        var body: some View {
-            
+        
         TabView{
             UserProgressView()
-                
                 .tabItem {
-                    Image(systemName: "1.square.fill")
+                    Image(systemName: "house.fill")
+                        .imageScale(.large)
                     Text("Progress")
+                    
                 }
             UserStatsView()
-                
                 .tabItem{
-                    Image(systemName: "2.square.fill")
+                    Image(systemName: "person.circle.fill")
+                        .imageScale(.large)
                     Text("Stats")
-            }
-            
+                }
             SettingsView()
-                
                 .tabItem {
                     Image(systemName: "gear")
-                    .foregroundColor(.gray)
-                    .imageScale(.large)
+                        .imageScale(.large)
                     Text("Settings")
-            }
-
+                }
         }
     }
 }

@@ -12,7 +12,8 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var uStats = UserStats()
+    //var uStats = UserStats()
+    var uNotifs = UserNotifications()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -21,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
         
-        let contentView = AppView().environmentObject(uStats)
+        let contentView = AppView().environmentObject(UserStats.uStats).environmentObject(uNotifs)
         
 
         // Use a UIHostingController as window root view controller.
@@ -39,17 +40,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not neccessarily discarded (see `application:didDiscardSceneSessions` instead).
-        uStats.consumptionGoal = uStats.calculateConsumptionGoal(smartGoalOn: uStats.smartGoalEnabled, isActive: uStats.isAthletic, weight: uStats.bodyWeight, currentGoal: uStats.consumptionGoal)
         
-        UserPreferences.sd.setAthleticism(isAthletic: uStats.isAthletic)
-        UserPreferences.sd.enableNotifications(enabled: uStats.notificationsEnabled)
-        UserPreferences.sd.setName(name: uStats.name)
-        UserPreferences.sd.setDailyProgress(progress: uStats.dailyProgress)
-        UserPreferences.sd.setNotificationInterval(interval: uStats.notificationInterval)
-        UserPreferences.sd.setSmartNotifications(isOn: uStats.smartNotifications)
-        UserPreferences.sd.setConsumptionGoal(consumptionGoal: uStats.consumptionGoal)
-        UserPreferences.sd.setBodyWeight(weight: uStats.bodyWeight)
-        UserPreferences.sd.setSmartGoalEnabled(isOn: uStats.smartGoalEnabled)
+        //uStats.consumptionGoal = uStats.calculateConsumptionGoal(smartGoalOn: uStats.smartGoalEnabled, isActive: uStats.isAthletic, weight: uStats.bodyWeight, currentGoal: uStats.consumptionGoal)
+        
+        UserPreferences.sd.setAthleticism(isAthletic: UserStats.uStats.isAthletic)
+        UserPreferences.sd.enableNotifications(enabled: uNotifs.notificationsEnabled)
+        UserPreferences.sd.setName(name: UserStats.uStats.name)
+        UserPreferences.sd.setDailyProgress(progress: UserStats.uStats.dailyProgress)
+        UserPreferences.sd.setNotificationInterval(interval: uNotifs.notificationInterval)
+        UserPreferences.sd.setSmartNotifications(isOn: uNotifs.smartNotifications)
+        UserPreferences.sd.setConsumptionGoal(consumptionGoal: UserStats.uStats.consumptionGoal)
+        UserPreferences.sd.setBodyWeight(weight: UserStats.uStats.bodyWeight)
+        UserPreferences.sd.setSmartGoalEnabled(isOn: UserStats.uStats.smartGoalEnabled)
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {

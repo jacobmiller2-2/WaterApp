@@ -21,6 +21,7 @@ class LocalNotificationManager {
     
     func setNotification(title: String,body:String, interval: Double) -> Void {
        // TODO: Handle better
+        
         self.addNotification(title: title, body: body)
         self.scheduleNotifications(interval: interval)
     }
@@ -44,6 +45,13 @@ class LocalNotificationManager {
      */
     func removeNotifications() -> Void{
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        notifications.removeAll()
+    }
+    
+    func removeAndSetNotifications(title: String,body:String, interval: Double) -> Void {
+        removeNotifications()
+        self.addNotification(title: title, body: body)
+        self.scheduleNotifications(interval: interval)
     }
     
     

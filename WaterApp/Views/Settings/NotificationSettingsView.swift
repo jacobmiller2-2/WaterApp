@@ -10,96 +10,78 @@ import SwiftUI
 
 struct NotificationSettingsView: View {
     
+    @EnvironmentObject var uNotifs : UserNotifications
     @EnvironmentObject var uStats : UserStats
     
-    @State private var hours : Int = Int(UserPreferences.sd.getNotificationInterval())/3600
-    @State private var min : Int = (Int(UserPreferences.sd.getNotificationInterval())%3600)/60
+    
+    @State private var hours : Int = 1
+    @State private var min : Int = 0
     
 
     var body: some View {
-        
         VStack{
             List {
-                
-                Section{
-                                   
-                    Toggle(isOn: $uStats.notificationsEnabled) {
+                Section(header: Text("Notifications")){
+                    Toggle(isOn: $uNotifs.notificationsEnabled) {
                         Text("Notifications")
                     }
-                    if (uStats.notificationsEnabled){
-                        Toggle(isOn: $uStats.smartNotifications) {
+                }
+                if(uNotifs.notificationsEnabled){
+                    Section {
+                        Toggle(isOn: $uNotifs.smartNotifications) {
                             Text("Enable Smart Notifications")
-                        } //TODO: Disable button rather than making it disappear
+                        }.animation(.easeInOut)
                     }
                 }
-            } // End Form
+           } // End Form
+            
                 .listStyle(GroupedListStyle())
                 .environment(\.horizontalSizeClass, .regular)
-                
             
-            
-            if (!uStats.notificationsEnabled || uStats.smartNotifications){
-                EmptyView()
-            } else {
-                VStack {
-                    //FIXME: picker size contraints
-                    Text("Set Notification Interveral")
-                    HStack{
-                        Spacer()
-                        Picker(selection: $hours ,label: Text("")) {
-                            ForEach(0 ..< 24){
-                                Text("\($0)").tag($0)
+            if(!uNotifs.smartNotifications){
+                Text("Recieving Notifivations Every:")
+                Text("\(uNotifs.notificationInterval.secondsToHoursMinutes())")
+                    GeometryReader{geometry in
+                        HStack{
+                            Picker("",selection: self.$hours){
+                                ForEach(0..<24){
+                                    Text("\($0)").tag($0)
+                                }
+                                
                             }
-                        }
-                        .frame(width: 20, height: 180)
-                        .fixedSize()
-                        Text("hours")
-                        Spacer()
-                        Picker(selection: $min, label: Text("")){
-                            ForEach(0 ..< 60){
-                                Text("\($0)").tag($0)
+                                .pickerStyle(WheelPickerStyle())
+                                .frame(width:geometry.size.width / CGFloat(5))
+                                .clipped()
+                            Text("hours")
+                            Picker("",selection: self.$min){
+                                ForEach(0..<61){
+                                    Text("\($0)").tag($0)
+                                }
+                                
                             }
+                                .pickerStyle(WheelPickerStyle())
+                                .frame(width:geometry.size.width / CGFloat(5))
+                                .clipped()
+                            Text("min")
                         }
-                        .frame(width: 20, height: 180)
-                        .fixedSize()
-                        Text("min")
-                        Spacer()
-                    }
-                    
+                    }.animation(.easeInOut)
                     TimerButtonComponent {
+                        if(self.hours == 0 && self.min == 0){
+                            self.min = 1;
+                        }
                         let interval = Double(self.hours*3600 + self.min*60)
-                        self.uStats.notificationInterval = interval
+                        self.uNotifs.notificationInterval = interval
                         self.hours = Int(interval)/3600
                         self.min = (Int(interval)%3600)/60
-                        LocalNotificationManager.shared.removeNotifications()
-                        LocalNotificationManager.shared.setNotification(title: "Drink", body: "You should Drink Water", interval: interval)
-                        // TODO:  Later change to random messages
+                        LocalNotificationManager.shared.removeAndSetNotifications(title: "Drink", body: "You should Drink Water", interval: interval)
                     }
-                    
-                    Text("Currently Notifying every:")
-                    Text("\(uStats.notificationInterval.secondsToHoursMinutes())")
-                    
-                }.onDisappear(perform: {
-                    if(!self.uStats.smartNotifications){
-                        LocalNotificationManager.shared.removeNotifications()
-                    } // TODO: Calculate smart interval
-                    
-                    
-                    print("notifications have been disabled")
-                })
-            }
-            
                 
+            }
             Spacer()
-        } // End VStack
+        }
+        
     }
+    
 }
 
-struct NotificationSettingsView_Previews: PreviewProvider {
-    
-    @EnvironmentObject var userStats : UserStats
-    
-    static var previews: some View {
-        NotificationSettingsView()
-    }
-}
+

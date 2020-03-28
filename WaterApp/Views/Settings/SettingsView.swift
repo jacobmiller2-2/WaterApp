@@ -15,38 +15,27 @@ struct SettingsView: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
-                List{   
-                    Section{
-                        NavigationLink(destination: NotificationSettingsView()) {
-                        Text("Notifications")
+                VStack{
+                    List{
+                        Section{
+                            NavigationLink(destination: NotificationSettingsView()) {
+                            Text("Notifications")
+                            }
+                            
+                            NavigationLink(destination: NameView()){
+                                Text("Personal Preferences")
+                            }
+                            
+                            NavigationLink(destination: StatSettingsView()){
+                                Text("Personal Stats")
+                            }
                         }
-                        
-                        NavigationLink(destination: NameView()){
-                            Text("Personal Preferences")
-                        }
-                        
-                        NavigationLink(destination: StatSettingsView()){
-                            Text("Personal Stats")
-                        }
-                    } // End Section 1
-                    Section {
-                        
-                        Picker(selection: $userStats.isAthletic, label: Text("Theme")) {
-                            Text("Yet to be implemented")
-                            Text("Dark Theme").tag(1)
-                            Text("Light Theme").tag(2)
-                            Text("System Default").tag(3)
-                        }
-                    } // End Section 2
-                    
+                    }.navigationBarTitle("Settings")// End List
+                    .listStyle(GroupedListStyle())
+                    .environment(\.horizontalSizeClass, .regular)
                 }
-                    .navigationBarTitle("Settings")// End List
-                .listStyle(GroupedListStyle())
-                .environment(\.horizontalSizeClass, .regular)
-                
-            } // Close VStack
-            Spacer()
+                    
+            
         }// Close NavigationView
     }
 }

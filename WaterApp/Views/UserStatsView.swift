@@ -12,6 +12,7 @@ import UserNotifications
 struct UserStatsView : View {
     
     @EnvironmentObject var uStats: UserStats
+    @EnvironmentObject var uNotifs: UserNotifications
     
     
     
@@ -19,58 +20,55 @@ struct UserStatsView : View {
         VStack(alignment: .leading){
         
             Text("Stats")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundColor(.label)
-                .padding(.vertical, 30)
-            HStack{
-                Text("Daily Goal: ")
-                Spacer()
-                Text("\(uStats.consumptionGoal) Oz.")
-            }
-            HStack{
-                Text("Progress to Goal: ")
-                Spacer()
-                Text("\(uStats.dailyProgress.roundToString(places: 2)) Oz.")
-            }
-            HStack{
-                Text("Smart Notifications: ")
-                Spacer()
-                if ( uStats.smartNotifications) { Text("Enabled") }
-                else { Text("Disabled") }
-            }
-            HStack{
-                Text("Notification Interval: ")
-                Spacer()
-                Text("\(uStats.notificationInterval.secondsToHoursMinutes())")
-            }
-            HStack{
-                Text("Lifestyle: ")
-                Spacer()
-                if ( uStats.isAthletic) { Text("Active") }
-                else { Text("Non-active") }
-            }
-            
-            HStack{
-                Text("Bodyweight: ")
-                Spacer()
-                Text("\(uStats.bodyWeight) lbs.")
-            }
-            HStack{
-                Text("Smart Goal: ")
-                Spacer()
-                if(uStats.smartGoalEnabled){
-                    Text("Enabled")
-                } else {
-                    Text("Disabled")
+            .font(.largeTitle)
+            .fontWeight(.bold)
+            .foregroundColor(.label)
+            VStack{
+                HStack{
+                    Text("Daily Goal: ")
+                    Spacer()
+                    Text("\(uStats.consumptionGoal) Oz.")
                 }
-            }
-            
-            
+                HStack{
+                    Text("Progress to Goal: ")
+                    Spacer()
+                    Text("\(uStats.dailyProgress.roundToString(places: 2)) Oz.")
+                }
+                HStack{
+                    Text("Smart Notifications: ")
+                    Spacer()
+                    if ( uNotifs.smartNotifications) { Text("Enabled") }
+                    else { Text("Disabled") }
+                }
+                HStack{
+                    Text("Notification Interval: ")
+                    Spacer()
+                    Text("\(uNotifs.notificationInterval.secondsToHoursMinutes())")
+                }
+                HStack{
+                    Text("Lifestyle: ")
+                    Spacer()
+                    if ( uStats.isAthletic) { Text("Active") }
+                    else { Text("Non-active") }
+                }
+                
+                HStack{
+                    Text("Bodyweight: ")
+                    Spacer()
+                    Text("\(uStats.bodyWeight) lbs.")
+                }
+                HStack{
+                    Text("Smart Goal: ")
+                    Spacer()
+                    if(uStats.smartGoalEnabled){
+                        Text("Enabled")
+                    } else {
+                        Text("Disabled")
+                    }
+                }
+            }.padding()
             Spacer()
-        }.onAppear(){
-            
-        }
+            }
         .foregroundColor(.secondaryLabel)
         .padding()
             

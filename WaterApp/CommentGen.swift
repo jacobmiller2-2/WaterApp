@@ -12,10 +12,15 @@ class CommentGen{
     
     var comments = [String]()
     var phrases = [String]()
+    var congratsPhrases = [String]()
+    
+    var notificationTitles = [String]()
+    var notificationBodies = [String]()
     
     static let shared = CommentGen()
     
     private init(){
+        // Comments
         comments.append(", you got this!")
         comments.append(", let's get this bread today!")
         comments.append(", today is your day!")
@@ -23,10 +28,21 @@ class CommentGen{
         comments.append(", you are a hydration station!")
         comments.append(", hydration is key!")
         
+        // Phrases
         phrases.append("Almost there,")
         phrases.append("Work toward your goal,")
         phrases.append("It's not too late,")
         phrases.append("So close,")
+        
+        // Congrats Phrases
+        congratsPhrases.append("Keep going,")
+        congratsPhrases.append("Don't stop,")
+        congratsPhrases.append("Push the limit,")
+        
+        // Notification Titles
+        notificationTitles.append("Drink")
+        
+        // Notification Bodies
     }
     
     func generateComment() -> String {
@@ -42,5 +58,28 @@ class CommentGen{
             return phrases[Int.random(in: 0 ... phrases.count-1)]
         }
         return "Almost there,"
+    }
+    func generateCongratsPhrase() -> String {
+        if(!congratsPhrases.isEmpty){
+            return congratsPhrases[Int.random(in: 0 ... congratsPhrases.count-1)]
+        }
+        return "Almost there,"
+    }
+    
+    func genNotificationTitle() -> String {
+        if(!notificationTitles.isEmpty){
+            return notificationTitles[Int.random(in: 0 ... notificationTitles.count-1)]
+        }
+        
+        return "Drink"
+    }
+    
+    func genNotificationbody() -> String {
+        
+        if(!notificationBodies.isEmpty){
+            return notificationBodies[Int.random(in: 0 ... notificationBodies.count-1)]
+        }
+        
+        return "You should Drink Water"
     }
 }

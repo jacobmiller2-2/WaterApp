@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreHaptics
 
 struct UserProgressView: View {
     
@@ -14,11 +15,12 @@ struct UserProgressView: View {
 
     @State var comment: String = CommentGen.shared.generateComment()
     @State var phrase: String = CommentGen.shared.generatePhrase()
+    @State var congratsPhrase: String = CommentGen.shared.generateCongratsPhrase()
     
     @State var timeRemaining = 100
-    let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
     
     @State var progressDisplay: Bool = true;
+    @State  var lastCount:Double = 0
     
     var body: some View {
         
@@ -36,30 +38,84 @@ struct UserProgressView: View {
                             Text("Oz. today")
                         }
                     } else {
-                        VStack(){
-                            Text("\(phrase)")
-                            Text("\((Double(uStats.consumptionGoal)-uStats.dailyProgress).roundToString(places: 2))").fontWeight(.medium).font(.largeTitle)
-                            Text("Oz. left to go")
-                        }.onAppear(){
-                            self.phrase = CommentGen.shared.generatePhrase()
+                        if(uStats.dailyProgress-Double(uStats.consumptionGoal)>0){
+                            VStack{
+                                Text("\(congratsPhrase)")
+                                Text("\((Double(uStats.consumptionGoal)-uStats.dailyProgress).magnitude.roundToString(places: 2))").fontWeight(.medium).font(.largeTitle)
+                                Text("Oz. past your goal")
+                                
+                            }
+                            .onAppear(){
+                                self.congratsPhrase = CommentGen.shared.generateCongratsPhrase()
+                            }
+                        } else {
+                            VStack{
+                                Text("\(phrase)")
+                                Text("\((Double(uStats.consumptionGoal)-uStats.dailyProgress).roundToString(places: 2))").fontWeight(.medium).font(.largeTitle)
+                                Text("Oz. left to go")
+                            }
+                            .onAppear(){
+                                self.phrase = CommentGen.shared.generatePhrase()
+                            }
                         }
                     }
                 }.animation(.default, value: progressDisplay)
                 .onTapGesture {
                     self.progressDisplay.toggle()
                 }
-                
-                
             }.padding()
             
-            Stepper(value: $uStats.dailyProgress) {
-            Text("Increment Progress")
+            VStack{
+                Stepper(onIncrement: {
+                    self.uStats.dailyProgress += 1
+                }, onDecrement: {
+                    if(self.uStats.dailyProgress >= 1){
+                        self.uStats.dailyProgress -= 1
+                    } else {
+                        self.uStats.dailyProgress = 0
+                    }
+                }) {
+                Text("1 Ounce")
+                }
+                Stepper(onIncrement: {
+                    self.uStats.dailyProgress += 5
+                }, onDecrement: {
+                    if(self.uStats.dailyProgress >= 5){
+                        self.uStats.dailyProgress -= 5
+                    } else {
+                        self.uStats.dailyProgress = 0
+                    }
+                }){
+                    Text("5 Ounces")
+                }
+                Stepper(onIncrement: {
+                    self.uStats.dailyProgress += 10
+                }, onDecrement: {
+                    if(self.uStats.dailyProgress >= 10){
+                        self.uStats.dailyProgress -= 10
+                    } else {
+                        self.uStats.dailyProgress = 0
+                    }
+                }){
+                    Text("10 Ounces.")
+                }
             }.padding()
+                .onReceive(uStats.objectWillChange){
+                    if(self.lastCount < Double(self.uStats.consumptionGoal)){
+                        if(self.uStats.dailyProgress >= Double(self.uStats.consumptionGoal)){
+                            let haptic = UINotificationFeedbackGenerator()
+                            haptic.notificationOccurred(.success)
+                        }
+                    }
+                    self.lastCount = self.uStats.dailyProgress
+            }
+            
             
 
             Spacer()
         }.onAppear(){
             self.comment = CommentGen.shared.generateComment()
+            self.lastCount = self.uStats.dailyProgress
         }
         
     }
