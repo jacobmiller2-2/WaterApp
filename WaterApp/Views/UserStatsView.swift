@@ -37,8 +37,7 @@ struct UserStatsView : View {
                 HStack{
                     Text("Smart Notifications: ")
                     Spacer()
-                    if ( uNotifs.smartNotifications) { Text("Enabled") }
-                    else { Text("Disabled") }
+                    (uNotifs.smartNotifications) ? Text("Enabled"):Text("Disabled")
                 }
                 HStack{
                     Text("Notification Interval: ")
@@ -48,8 +47,8 @@ struct UserStatsView : View {
                 HStack{
                     Text("Lifestyle: ")
                     Spacer()
-                    if ( uStats.isAthletic) { Text("Active") }
-                    else { Text("Non-active") }
+                    (uStats.isActive) ? Text("Active"):Text("Non-active")
+                    
                 }
                 
                 HStack{
@@ -60,11 +59,7 @@ struct UserStatsView : View {
                 HStack{
                     Text("Smart Goal: ")
                     Spacer()
-                    if(uStats.smartGoalEnabled){
-                        Text("Enabled")
-                    } else {
-                        Text("Disabled")
-                    }
+                    (uStats.smartGoalEnabled) ? Text("Enabled") : Text("Disabled")
                 }
             }.padding()
             Spacer()

@@ -14,12 +14,20 @@ class UserStats : ObservableObject{
     //Stats
     var smartGoalEnabled = UserPreferences.sd.isSmartGoalOn(){
         didSet{
-            consumptionGoal = calculateConsumptionGoal(smartGoalOn: smartGoalEnabled, isActive: isAthletic, weight: bodyWeight)
+            updateConsumptionGoal()
         }
     }
-    @Published var isAthletic = UserPreferences.sd.getAthleticism()
+    var isActive = UserPreferences.sd.getActiveness(){
+        didSet{
+            updateConsumptionGoal()
+        }
+    }
     @Published var consumptionGoal = UserPreferences.sd.getConsumptionGoal()
-    @Published var bodyWeight = UserPreferences.sd.getBodyWeight()
+    var bodyWeight = UserPreferences.sd.getBodyWeight(){
+        didSet{
+            updateConsumptionGoal()
+        }
+    }
     @Published var dailyProgress = UserPreferences.sd.getDailyProgress()
     @Published var name = UserPreferences.sd.getName()
 
@@ -31,7 +39,7 @@ class UserStats : ObservableObject{
     
     @Published var isNewDay: Bool = (Int(Date.timeIntervalSinceReferenceDate) > (Int(Date.timeIntervalSinceReferenceDate)+(86400 - (UserPreferences.sd.getTimeSinceLastLoad()%86400))))
     
-    func calculateConsumptionGoal(smartGoalOn: Bool, isActive: Bool, weight: Int) -> Int {
+    private func calculateConsumptionGoal(smartGoalOn: Bool, isActive: Bool, weight: Int) -> Int {
         var goal: Int
         if(smartGoalOn){
             if(weight == 0){
@@ -44,6 +52,10 @@ class UserStats : ObservableObject{
             return goal
         }
         return 0;
+    }
+    
+    func updateConsumptionGoal(){
+        consumptionGoal = calculateConsumptionGoal(smartGoalOn: smartGoalEnabled, isActive: isActive, weight: bodyWeight)
     }
     
     

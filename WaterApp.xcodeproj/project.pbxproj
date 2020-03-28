@@ -123,6 +123,7 @@
 			children = (
 				9BD4468923E4972600A60B69 /* UserPreferences.swift */,
 				9BF2BC1223C8FBE600D7572A /* UserStats.swift */,
+				9B96F5B6242ED5D600EBB1BC /* UserNotifications.swift */,
 				9B31164C23BFAE1D00CF75DB /* LocalNotificationManager.swift */,
 				9BF2BC1423CAD00400D7572A /* SwiftExtensions */,
 				9B31165023BFB22100CF75DB /* Sounds */,
@@ -136,7 +137,6 @@
 				9B31164023BFAC6900CF75DB /* Preview Content */,
 				9B95D45023E8D465004F13E8 /* PreferenceKeys.swift */,
 				9BF085AA2400554900060014 /* CommentGen.swift */,
-				9B96F5B6242ED5D600EBB1BC /* UserNotifications.swift */,
 			);
 			path = WaterApp;
 			sourceTree = "<group>";

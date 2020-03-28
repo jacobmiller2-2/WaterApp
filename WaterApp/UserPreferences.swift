@@ -21,7 +21,7 @@ class UserPreferences {
             defaults.set(Int(Date.timeIntervalSinceReferenceDate),forKey: lastLoadup)
             defaults.set(true, forKey: existsKey)
             defaults.set(true, forKey: notificationsEnabledKey)
-            defaults.set(false, forKey: isAthleticKey)
+            defaults.set(false, forKey: isActiveKey)
             defaults.set(3600, forKey: notificationIntervalKey)
             defaults.set(64, forKey: consumptionGoalKey)
             defaults.set(100, forKey: bodyWeightKey)
@@ -45,8 +45,8 @@ class UserPreferences {
     /**
             Changes the Athleticism of the User
      */
-    func setAthleticism(isAthletic: Bool) {
-        defaults.set(isAthletic, forKey: isAthleticKey)
+    func setActiveness(isActive: Bool) {
+        defaults.set(isActive, forKey: isActiveKey)
     }
     
     /**
@@ -94,8 +94,8 @@ class UserPreferences {
         defaults.set(isOn, forKey: smartNotificationsKey)
     }
     
-    func getAthleticism() -> Bool { // change to lifestyle
-        return defaults.bool(forKey: isAthleticKey)
+    func getActiveness() -> Bool { // change to lifestyle
+        return defaults.bool(forKey: isActiveKey)
     }
     
     func getConsumptionGoal() -> Int {

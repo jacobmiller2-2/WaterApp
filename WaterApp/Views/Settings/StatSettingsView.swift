@@ -15,7 +15,7 @@ struct StatSettingsView: View {
     var body: some View {
         
         Form {
-            Section(footer: Text("Turning on sets your water consumption goal to be a calculated value based on your weight, lifestyle type, and sex.")){
+            Section(header: Text(""), footer: Text("Turning on sets your water consumption goal to be a calculated value based on your weight and lifestyle.")){
                 Toggle(isOn: $uStats.smartGoalEnabled){
                     Text("Enable Smart Goal")
                 }
@@ -43,7 +43,7 @@ struct StatSettingsView: View {
                 TextField("Goal", value: $uStats.bodyWeight, formatter: NumberFormatter())
                 .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.horizontal,30)
 
-                Toggle(isOn: $uStats.isAthletic){
+                Toggle(isOn: $uStats.isActive){
                     Text("Do you have an active lifestyle?")
                 }
             }.animation(.easeInOut)

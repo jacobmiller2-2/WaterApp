@@ -69,33 +69,21 @@ struct UserProgressView: View {
                 Stepper(onIncrement: {
                     self.uStats.dailyProgress += 1
                 }, onDecrement: {
-                    if(self.uStats.dailyProgress >= 1){
-                        self.uStats.dailyProgress -= 1
-                    } else {
-                        self.uStats.dailyProgress = 0
-                    }
+                    (self.uStats.dailyProgress >= 1) ? (self.uStats.dailyProgress -= 1) : (self.uStats.dailyProgress = 0)
                 }) {
                 Text("1 Ounce")
                 }
                 Stepper(onIncrement: {
                     self.uStats.dailyProgress += 5
                 }, onDecrement: {
-                    if(self.uStats.dailyProgress >= 5){
-                        self.uStats.dailyProgress -= 5
-                    } else {
-                        self.uStats.dailyProgress = 0
-                    }
+                    (self.uStats.dailyProgress >= 5) ? (self.uStats.dailyProgress -= 5) : (self.uStats.dailyProgress = 0)
                 }){
                     Text("5 Ounces")
                 }
                 Stepper(onIncrement: {
                     self.uStats.dailyProgress += 10
                 }, onDecrement: {
-                    if(self.uStats.dailyProgress >= 10){
-                        self.uStats.dailyProgress -= 10
-                    } else {
-                        self.uStats.dailyProgress = 0
-                    }
+                    (self.uStats.dailyProgress >= 10) ? (self.uStats.dailyProgress -= 10) : (self.uStats.dailyProgress = 0)
                 }){
                     Text("10 Ounces.")
                 }
@@ -109,21 +97,15 @@ struct UserProgressView: View {
                     }
                     self.lastCount = self.uStats.dailyProgress
             }
-            
-            
-
             Spacer()
         }.onAppear(){
             self.comment = CommentGen.shared.generateComment()
             self.lastCount = self.uStats.dailyProgress
         }
-        
     }
 }
 
 struct UserProgressView_Previews: PreviewProvider {
-    
- 
     static var previews: some View {
         UserProgressView()
     }

@@ -14,10 +14,10 @@ class UserNotifications : ObservableObject {
     var smartNotifications: Bool = UserPreferences.sd.smartNotifications(){
         didSet{
             if(smartNotifications){
-                notificationInterval = calculateSmartInterval(isActive: UserStats.uStats.isAthletic, goal: UserStats.uStats.consumptionGoal)
+                notificationInterval = calculateSmartInterval(isActive: UserStats.uStats.isActive, goal: UserStats.uStats.consumptionGoal)
                 LocalNotificationManager.shared.removeAndSetNotifications(title: "Drink", body: "You should Drink Water", interval: notificationInterval)
             } else {
-                notificationInterval = 3600
+                notificationInterval = 3600 // Default interval
                 LocalNotificationManager.shared.removeAndSetNotifications(title: "Drink", body: "You should Drink Water", interval: notificationInterval)
             }
             objectWillChange.send()
@@ -29,6 +29,9 @@ class UserNotifications : ObservableObject {
                 smartNotifications = false;
                 notificationInterval = 0;
                 LocalNotificationManager.shared.removeNotifications()
+            } else {
+                LocalNotificationManager.shared.requestAuth()
+                notificationInterval = 3600 // Default Interval
             }
             objectWillChange.send()
         }
@@ -36,22 +39,9 @@ class UserNotifications : ObservableObject {
     
     @Published var notificationInterval: Double = UserPreferences.sd.getNotificationInterval()
     
-    @Published var notificationStatus: NotificationStatus = NotificationStatus.SmartNotifications
-    
     func calculateSmartInterval(isActive: Bool, goal: Int) -> Double{
-        var interval = 0;
-        if(isActive){
-            interval = 86400/30
-        } else {
-            interval = 86400/24
-        }
+        var interval: Double
+        (isActive) ? (interval = 86400/30) : (interval = 86400/24)
         return Double(interval)
     }
-    
-}
-
-enum NotificationStatus {
-    case SmartNotifications
-    case SetNotififications
-    case NoNotifications
 }

@@ -10,11 +10,10 @@ import Foundation
 
 let existsKey = "exists"
 let notificationsEnabledKey = "notificationsEnabled"
-let isAthleticKey = "isAthletic"
+let isActiveKey = "isActive"
 let notificationIntervalKey = "notificationInterval"
 let consumptionGoalKey = "consumptionGoal"
 let bodyWeightKey = "bodyWeight"
-let sexKey = "sex"
 let smartNotificationsKey = "smartNotifications"
 let dailyProgressKey = "dailyProgress"
 let nameKey = "name"

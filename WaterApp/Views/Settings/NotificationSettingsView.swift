@@ -21,7 +21,7 @@ struct NotificationSettingsView: View {
     var body: some View {
         VStack{
             List {
-                Section(header: Text("Notifications")){
+                Section(header: Text("")){
                     Toggle(isOn: $uNotifs.notificationsEnabled) {
                         Text("Notifications")
                     }

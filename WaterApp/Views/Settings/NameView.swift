@@ -8,18 +8,14 @@
 
 import SwiftUI
 
-
-
 struct NameView: View {
     @EnvironmentObject var uStats : UserStats
     
     var body: some View {
         VStack{
             Text("What would you liked to be called?")
-            
             TextField("Name", text: $uStats.name).textFieldStyle(RoundedBorderTextFieldStyle()).padding(.horizontal,30)
-            
-            
+            Spacer()
         }
     }
 }

@@ -12,7 +12,6 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    //var uStats = UserStats()
     var uNotifs = UserNotifications()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -41,9 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not neccessarily discarded (see `application:didDiscardSceneSessions` instead).
         
-        //uStats.consumptionGoal = uStats.calculateConsumptionGoal(smartGoalOn: uStats.smartGoalEnabled, isActive: uStats.isAthletic, weight: uStats.bodyWeight, currentGoal: uStats.consumptionGoal)
-        
-        UserPreferences.sd.setAthleticism(isAthletic: UserStats.uStats.isAthletic)
+        UserPreferences.sd.setActiveness(isActive: UserStats.uStats.isActive)
         UserPreferences.sd.enableNotifications(enabled: uNotifs.notificationsEnabled)
         UserPreferences.sd.setName(name: UserStats.uStats.name)
         UserPreferences.sd.setDailyProgress(progress: UserStats.uStats.dailyProgress)
